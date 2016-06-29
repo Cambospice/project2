@@ -120,10 +120,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			t.element = findMin(t.right).element;
 			t.right = remove(t.element, t.right);
 		} else {
-			t.left = null;
-			t.right = null;
+			t = (t.left != null) ? t.left : t.right;
 		}
 		return t;
 	}
+	
+
 
 }

@@ -1,6 +1,6 @@
 package project2;
 
-public class AvlNode<T extends Comparable<T>> extends BinarySearchTree {
+public class AvlNode<T extends Comparable<T>> extends BinarySearchTree<T> {
 	T element;
 	AvlNode<T> left;
 	AvlNode<T> right;
@@ -33,18 +33,8 @@ public class AvlNode<T extends Comparable<T>> extends BinarySearchTree {
 
 	private static final int ALLOWED_IMBALANCE = 1;
 
-	private int height(AvlNode<T> aNode) {
-		int heightLeft = 0;
-		int heightRight = 0;
-		if (aNode.left != null)
-			heightLeft = height(aNode.left);
-		if (aNode.right != null)
-			heightRight = height(aNode.right);
-		if (heightLeft > heightRight) {
-			return heightLeft + 1;
-		} else {
-			return heightRight + 1;
-		}
+	private int height(AvlNode<T> t) {
+		return t == null ? -1 : t.height;
 	}
 
 	private AvlNode<T> balance(AvlNode<T> t) {
@@ -64,9 +54,8 @@ public class AvlNode<T extends Comparable<T>> extends BinarySearchTree {
 		t.height = Math.max(height(t.left), height(t.right)) + 1;
 		return t;
 	}
-	
-	private AvlNode<T> rotateWithRightChild(AvlNode<T> k1)
-	{
+
+	private AvlNode<T> rotateWithRightChild(AvlNode<T> k1) {
 		AvlNode<T> k2 = k1.right;
 		k1.right = k2.left;
 		k1.left = k2;
@@ -88,10 +77,40 @@ public class AvlNode<T extends Comparable<T>> extends BinarySearchTree {
 		k3.left = rotateWithRightChild(k3.left);
 		return rotateWithLeftChild(k3);
 	}
-	
-	private AvlNode<T> doubleWithRightChild(AvlNode<T> k4)
-	{
+
+	private AvlNode<T> doubleWithRightChild(AvlNode<T> k4) {
 		k4.right = rotateWithLeftChild(k4.right);
 		return rotateWithRightChild(k4);
 	}
+	
+	private AvlNode<T> remove(T x, AvlNode<T> t)
+	{
+		if(t == null)
+			return t;
+		
+		int compareResult = x.compareTo(t.element);
+		
+		if(compareResult < 0)
+			t.left = remove(x, t.left);
+		else if( compareResult > 0)
+			t.right = remove(x, t.right);
+		else if(t.left != null && t.right != null)
+		{
+			t.element = findMin(t.right).element;
+			t.right = remove(t.element, t.right);
+		}
+		else
+			t = (t.left !=null ) ? t.left : t.right;
+		return balance(t);
+			
+	}
+	
+	private AvlNode<T> findMin(AvlNode<T> t) {
+		if (t == null)
+			return null;
+		else if (t.left == null)
+			return t; // found the leftmost node
+		return findMin(t.left);
+	}
+
 }

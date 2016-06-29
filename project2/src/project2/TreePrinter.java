@@ -311,19 +311,18 @@ public class TreePrinter {
 	}
 
 	public static void main(String[] args) {
-		BinarySearchTree<Integer> tree = new BinarySearchTree<>() ;
+//		BinarySearchTree<Integer> tree = new BinarySearchTree<>() ;
+		AvlNode<Integer> tree = new AvlNode<>(9);
 		Random rand = new Random();
-		System.out.println(tree.getRoot());
+	
 		while(tree.height() != 5) {
 			int n = rand.nextInt(90) + 10;
 			tree.insert(n);
 		}
-		
+				
+		System.out.println(tree.getRoot());
 		TreePrinter print = new TreePrinter(tree);
 		print.print("TREE");
 		
-
-	
-
 	}
 }
