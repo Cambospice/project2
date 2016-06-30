@@ -333,10 +333,10 @@ public class TreePrinter {
 			tree.insert(n);
 		}
 				
-		System.out.println(tree.getRoot());
+		System.out.println(tree.getRoot().getData());
 		TreePrinter print = new TreePrinter(tree);
 		print.print("TREE");
 		long timeEnd = System.currentTimeMillis();
-		System.out.println((double)(timeEnd-timeStart)/100 + " seconds");
+		System.out.println("Time taken to make tree: "+ (double)(timeEnd-timeStart)/100 + " seconds");
 	}
 }
