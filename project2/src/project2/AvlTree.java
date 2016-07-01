@@ -2,7 +2,7 @@ package project2;
 
 public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
-	private BinaryNode<T> root;
+	private AvlNode<T> root;
 	
 	public AvlTree()
     {

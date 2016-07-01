@@ -12,7 +12,7 @@ import java.util.Random;
  *
  */
 public class TreePrinter {
-	private static final int MAX_LEVELS = 6;
+	private static final int MAX_LEVELS = 20;
 
 	private BinarySearchTree<Integer> tree; // the tree
 	private int height; // its height
@@ -327,16 +327,18 @@ public class TreePrinter {
 		//Timer function on
 		AvlNode<Integer> tree = new AvlNode<>(9);
 		Random rand = new Random();
+		long nodes= 100000000;
+		for(int timer = 0; timer < 5; timer++){
 		long timeStart = System.currentTimeMillis();
-		while(tree.height() != 5) {
+		long counter = 0;
+		while(counter != nodes ) {
 			int n = rand.nextInt(90) + 10;
 			tree.insert(n);
+			counter++;
 		}
-				
-		System.out.println(tree.getRoot().getData());
-		TreePrinter print = new TreePrinter(tree);
-		print.print("TREE");
 		long timeEnd = System.currentTimeMillis();
-		System.out.println("Time taken to make tree: "+ (double)(timeEnd-timeStart)/100 + " seconds");
+		System.out.println("Number of nodes in tree: " + nodes);
+		System.out.println("Time taken to make tree: "+ (double)(timeEnd-timeStart)/1000+ " seconds");
+		}
 	}
 }
