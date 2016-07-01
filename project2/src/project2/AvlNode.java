@@ -15,7 +15,8 @@ public class AvlNode<T extends Comparable<T>> extends BinarySearchTree<T> {
 		left = lt;
 		right = rt;
 	}
-
+	
+	
 	private AvlNode<T> insert(T x, AvlNode<T> t) {
 		if (t == null)
 			return new AvlNode<>(x, null, null);

@@ -312,7 +312,7 @@ public class TreePrinter {
 
 	public static void main(String[] args) {
 //		BinarySearchTree<Integer> tree = new BinarySearchTree<>() ;
-		AvlNode<Integer> tree = new AvlNode<>(9);
+		/**AvlNode<Integer> tree = new AvlNode<>(9);
 		Random rand = new Random();
 	
 		while(tree.height() != 5) {
@@ -323,6 +323,20 @@ public class TreePrinter {
 		System.out.println(tree.getRoot());
 		TreePrinter print = new TreePrinter(tree);
 		print.print("TREE");
-		
+		**/
+		//Timer function on
+		AvlNode<Integer> tree = new AvlNode<>(9);
+		Random rand = new Random();
+		long timeStart = System.currentTimeMillis();
+		while(tree.height() != 5) {
+			int n = rand.nextInt(90) + 10;
+			tree.insert(n);
+		}
+				
+		System.out.println(tree.getRoot().getData());
+		TreePrinter print = new TreePrinter(tree);
+		print.print("TREE");
+		long timeEnd = System.currentTimeMillis();
+		System.out.println("Time taken to make tree: "+ (double)(timeEnd-timeStart)/100 + " seconds");
 	}
 }
