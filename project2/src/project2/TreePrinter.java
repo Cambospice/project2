@@ -329,13 +329,13 @@ public class TreePrinter {
 							int n = rand.nextInt(90) + 10;
 							tree.insert(n);
 							TreePrinter print = new TreePrinter(tree);
-							print.print("tree");
+							print.print("AVL Tree");
 						}
 
 						while (tree.getRoot() != null) {
 							tree.remove(tree.getRoot().getData());
 							TreePrinter print = new TreePrinter(tree);
-							print.print("REMOVE");
+							print.print("REMOVE AVL Tree");
 
 						}
 						break;
@@ -345,15 +345,14 @@ public class TreePrinter {
 						while(tree.height() != 5) {
 							int n = rand.nextInt(90) + 10;
 							tree.insert(n);
-							TreePrinter print = new TreePrinter(tree);
-							print.print("TREE");
 						}
+						TreePrinter print = new TreePrinter(tree);
+						print.print("BST TREE");
 
 						while(tree.getRoot() != null)
 						{
 							tree.remove(tree.getRoot().getData());
-							TreePrinter print = new TreePrinter(tree);
-							print.print("REMOVE");
+							print.print("REMOVE BST Tree");
 						}
 						break;
 					}

@@ -69,13 +69,13 @@ public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
 	public BinaryNode<T> doubleWithLeftChild(BinaryNode<T> k3) {
 		k3.left = rotateWithRightChild(k3.left);
-		System.out.println("double left-right Rotation: " + k3.getData());
+		System.out.println("Double left-right Rotation: " + k3.getData());
 		return rotateWithLeftChild(k3);
 	}
 
 	public BinaryNode<T> doubleWithRightChild(BinaryNode<T> k1) {
 		k1.right = rotateWithLeftChild(k1.right);
-		System.out.println("double right-left Rotation: " + k1.getData());
+		System.out.println("Double right-left Rotation: " + k1.getData());
 		return rotateWithRightChild(k1);
 	}
 
