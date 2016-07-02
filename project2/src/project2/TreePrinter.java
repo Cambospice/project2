@@ -320,7 +320,7 @@ public class TreePrinter {
 			int part = in.nextInt();
 			in.nextLine();
 			if(part==1) {
-				System.out.println("AVL or BST? (A for AVL, B for BST, anything else would not work)");
+				System.out.println("AVL or BST? (A for AVL, B for BST, E to exit. anything else would not work)");
 				while(in.hasNextLine()){
 					String s = in.nextLine();
 					if(s.toUpperCase().equals("A")){ //AVL Tree
@@ -338,7 +338,6 @@ public class TreePrinter {
 							print.print("REMOVE AVL Tree");
 
 						}
-						break;
 					}
 					else if(s.toUpperCase().equals("B")){ //BST Tree
 						tree = new BinarySearchTree<>();
@@ -354,21 +353,32 @@ public class TreePrinter {
 							tree.remove(tree.getRoot().getData());
 							print.print("REMOVE BST Tree");
 						}
+					}
+					else if (s.toUpperCase().equals("E")){
+						System.exit(0);;
+					}
+					
+					else System.out.println("Incorrect input. Try again.");
+					System.out.println("Restart? (Y/N) ");
+					String restart = in.nextLine();
+					if (restart.equals("Y")){
+						System.out.println("Would you like to check Part(1) or Part(2)? (Type 1 or 2 in the console)");
 						break;
 					}
-					else System.out.println("Incorrect input. Try again.");
 				}
 				
-				break;
 			}
 			else if (part==2){
 				tree = new AvlTree<>();
 				BinarySearchTree<Integer> tree2 = new BinarySearchTree<>();
-				System.out.println("Provide the value of n nodes (Give value above 1000): ");
-				int n = 0;
-				while(n == 0){
-				n = in.nextInt();
-				if(n == 0) System.out.println("n needs to be more than 1/input an integer");
+				boolean endLoop = false;
+				while(!endLoop){
+				System.out.println("Provide the value of n nodes (Give value above 1000, to end give 0): ");
+				long n = 0;
+				n = in.nextLong();
+				if(n == 0){
+					endLoop = true;
+					break;
 				}
 				long timeStart = System.currentTimeMillis();
 				for (int i = 0; i < n; i++) {
@@ -376,7 +386,7 @@ public class TreePrinter {
 					tree2.insert(value);
 				}
 				long timeEnd = System.currentTimeMillis();
-				System.out.println("Time taken to make BST tree: "+
+				System.out.println("Time taken to make BST tree of " + n + " nodes: "+
 						(double)(timeEnd-timeStart)/1000 + " seconds");
 				timeStart = System.currentTimeMillis();
 				for (int i = 0; i < n; i++) {
@@ -384,8 +394,11 @@ public class TreePrinter {
 					tree.insert(value);
 				}
 				timeEnd = System.currentTimeMillis();
-				System.out.println("Time taken to make AVL tree: "+
+				System.out.println("Time taken to make AVL tree of " + n + " nodes: "+
 						(double)(timeEnd-timeStart)/1000 + " seconds");
+				
+				}
+				System.out.println("Would you like to check Part(1) or Part(2)? (Type 1 or 2 in the console)");
 			}
 		}
 		
