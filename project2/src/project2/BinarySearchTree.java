@@ -40,11 +40,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 	}
 
-	private int height(BinaryNode<T> aNode) {
-		if (aNode == null)
+	private int height(BinaryNode<T> t) {
+		if (t == null)
 			return -1;
 		else
-			return 1 + Math.max(height(aNode.left), height(aNode.right));
+			return 1 + Math.max(height(t.left), height(t.right));
 
 	}
 
@@ -76,7 +76,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		root = remove(x, root);
 	}
 
-	private BinaryNode<T> insert(T x, BinaryNode<T> t) {
+	public BinaryNode<T> insert(T x, BinaryNode<T> t) {
 		if (t == null) {
 			return new BinaryNode<>(x, null, null);
 		}
@@ -107,7 +107,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		return t;
 	}
 
-	private BinaryNode<T> remove(T x, BinaryNode<T> t) {
+	public BinaryNode<T> remove(T x, BinaryNode<T> t) {
 		if (t == null)
 			return t;
 
@@ -128,3 +128,4 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 
 }
+

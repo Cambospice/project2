@@ -4,6 +4,7 @@ public class BinaryNode<T> {
 	T element;
 	BinaryNode<T> left;
 	BinaryNode<T> right;
+	int height;
 
 	// constructors
 	BinaryNode(T theElement) {
@@ -27,4 +28,9 @@ public class BinaryNode<T> {
 	public BinaryNode<T> getRight() {
 		return right;
 	}
+
+	public int getHeight() {
+		return height;
+	}
+	
 }

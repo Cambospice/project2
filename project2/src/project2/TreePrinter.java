@@ -1,6 +1,7 @@
 package project2;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * BST and AVL tree printer for Integer nodes.
@@ -12,7 +13,7 @@ import java.util.Random;
  *
  */
 public class TreePrinter {
-	private static final int MAX_LEVELS = 20;
+	private static final int MAX_LEVELS = 6;
 
 	private BinarySearchTree<Integer> tree; // the tree
 	private int height; // its height
@@ -311,34 +312,69 @@ public class TreePrinter {
 	}
 
 	public static void main(String[] args) {
-//		BinarySearchTree<Integer> tree = new BinarySearchTree<>() ;
-		/**AvlNode<Integer> tree = new AvlNode<>(9);
+		Scanner in = new Scanner(System.in);
 		Random rand = new Random();
-	
-		while(tree.height() != 5) {
-			int n = rand.nextInt(90) + 10;
-			tree.insert(n);
-		}
+		BinarySearchTree<Integer> tree = null;
+		System.out.println("Would you like to check Part(1) or Part(2)? (Type 1 or 2 in the console)");
+		while(in.hasNextInt()){
+			int part = in.nextInt();
+			in.nextLine();
+			if(part==1) {
+				System.out.println("AVL or BST? (A for AVL, B for BST, anything else would not work)");
+				while(in.hasNextLine()){
+					String s = in.nextLine();
+					if(s.toUpperCase().equals("A")){ //AVL Tree
+						tree = new AvlTree<>();
+						for (int i = 0; i < 35; i++) {
+							int n = rand.nextInt(90) + 10;
+							tree.insert(n);
+							TreePrinter print = new TreePrinter(tree);
+							print.print("tree");
+						}
+
+						while (tree.getRoot() != null) {
+							tree.remove(tree.getRoot().getData());
+							TreePrinter print = new TreePrinter(tree);
+							print.print("REMOVE");
+
+						}
+						break;
+					}
+					else if(s.toUpperCase().equals("B")){ //BST Tree
+						tree = new BinarySearchTree<>();
+						while(tree.height() != 5) {
+							int n = rand.nextInt(90) + 10;
+							tree.insert(n);
+							TreePrinter print = new TreePrinter(tree);
+							print.print("TREE");
+						}
+
+						while(tree.getRoot() != null)
+						{
+							tree.remove(tree.getRoot().getData());
+							TreePrinter print = new TreePrinter(tree);
+							print.print("REMOVE");
+						}
+						break;
+					}
+					else System.out.println("Incorrect input. Try again.");
+				}
 				
-		System.out.println(tree.getRoot());
-		TreePrinter print = new TreePrinter(tree);
-		print.print("TREE");
-		**/
-		//Timer function on
-		AvlNode<Integer> tree = new AvlNode<>(9);
-		Random rand = new Random();
-		long nodes= 100000000;
-		for(int timer = 0; timer < 5; timer++){
-		long timeStart = System.currentTimeMillis();
-		long counter = 0;
-		while(counter != nodes ) {
-			int n = rand.nextInt(90) + 10;
-			tree.insert(n);
-			counter++;
+				break;
+			}
+			else if (part==2){
+				tree = new AvlTree<>();
+				long timeStart = System.currentTimeMillis();
+				
+
+				long timeEnd = System.currentTimeMillis();
+
+				System.out.println("Time taken to make tree: "+
+						(double)(timeEnd-timeStart)/1000 + " seconds");
+			}
 		}
-		long timeEnd = System.currentTimeMillis();
-		System.out.println("Number of nodes in tree: " + nodes);
-		System.out.println("Time taken to make tree: "+ (double)(timeEnd-timeStart)/1000+ " seconds");
-		}
+		
+
+		
 	}
 }
