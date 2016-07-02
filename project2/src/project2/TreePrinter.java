@@ -364,12 +364,28 @@ public class TreePrinter {
 			}
 			else if (part==2){
 				tree = new AvlTree<>();
+				BinarySearchTree<Integer> tree2 = new BinarySearchTree<>();
+				System.out.println("Provide the value of n nodes (Give value above 1000): ");
+				int n = 0;
+				while(n == 0){
+				n = in.nextInt();
+				if(n == 0) System.out.println("n needs to be more than 1/input an integer");
+				}
 				long timeStart = System.currentTimeMillis();
-				
-
+				for (int i = 0; i < n; i++) {
+					int value = rand.nextInt(90) + 10;
+					tree2.insert(value);
+				}
 				long timeEnd = System.currentTimeMillis();
-
-				System.out.println("Time taken to make tree: "+
+				System.out.println("Time taken to make BST tree: "+
+						(double)(timeEnd-timeStart)/1000 + " seconds");
+				timeStart = System.currentTimeMillis();
+				for (int i = 0; i < n; i++) {
+					int value = rand.nextInt(90) + 10;
+					tree.insert(value);
+				}
+				timeEnd = System.currentTimeMillis();
+				System.out.println("Time taken to make AVL tree: "+
 						(double)(timeEnd-timeStart)/1000 + " seconds");
 			}
 		}
