@@ -50,6 +50,11 @@ public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		return t;
 	}
 
+	/**
+	 * Rotates the node along the right child.
+	 * @param k1 the node to be rotated.
+	 * @return the new node that was rotated.
+	 */
 	public BinaryNode<T> rotateWithRightChild(BinaryNode<T> k1) {
 		BinaryNode<T> k2 = k1.right;
 		k1.right = k2.left;
@@ -60,6 +65,11 @@ public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		return k2;
 	}
 
+	/**
+	 * Rotates the node along the left child.
+	 * @param k2 the node to be rotated.
+	 * @return the new node that was rotated.
+	 */
 	public BinaryNode<T> rotateWithLeftChild(BinaryNode<T> k2) {
 		BinaryNode<T> k1 = k2.left;
 		k2.left = k1.right;
@@ -70,18 +80,34 @@ public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		return k1;
 	}
 
+	/**
+	 * Rotates the node along the left child twice.
+	 * @param k3 the node to be rotated.
+	 * @return the new rotation.
+	 */
 	public BinaryNode<T> doubleWithLeftChild(BinaryNode<T> k3) {
 		k3.left = rotateWithRightChild(k3.left);
 		if(printStatements)System.out.println("Double left-right Rotation: " + k3.getData());
 		return rotateWithLeftChild(k3);
 	}
 
+	/**
+	 * Rotates the node along the right child twice.
+	 * @param k4 the node to be rotated.
+	 * @return the new rotation.
+	 */
 	public BinaryNode<T> doubleWithRightChild(BinaryNode<T> k1) {
 		k1.right = rotateWithLeftChild(k1.right);
 		if(printStatements)System.out.println("Double right-left Rotation: " + k1.getData());
 		return rotateWithRightChild(k1);
 	}
 
+	/**
+	 * Removes the node with the data requested
+	 * @param x the data
+	 * @param t node to search below
+	 * @return a balanced tree after removal
+	 */
 	public BinaryNode<T> remove(T x, BinaryNode<T> t) {
 		if (t == null)
 			return t;
@@ -99,7 +125,12 @@ public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 			t = (t.left != null) ? t.left : t.right;
 		return balance(t);
 	}
-
+	
+	/**
+	 * Finds the node with minimum value
+	 * @param t node to search below
+	 * @return the minimum value node
+	 */
 	private BinaryNode<T> findMin(BinaryNode<T> t) {
 		if (t == null)
 			return null;

@@ -336,7 +336,7 @@ public class TreePrinter {
 		while(in.hasNextInt()){
 			int part = in.nextInt();
 			in.nextLine();
-			if(part==1) {
+			if(part==1) { //PART ONE OF PROJECT
 				System.out.println("AVL or BST? (A for AVL, B for BST, E to exit. anything else would not work)");
 				while(in.hasNextLine()){
 					String s = in.nextLine();
@@ -390,7 +390,7 @@ public class TreePrinter {
 				}
 				
 			}
-			else if (part==2){
+			else if (part==2){ //PART 2 OF PROJECT
 				tree = new AvlTree<>();
 				BinarySearchTree<Integer> tree2 = new BinarySearchTree<>();
 				boolean endLoop = false;
