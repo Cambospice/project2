@@ -365,6 +365,9 @@ public class TreePrinter {
 						System.out.println("Would you like to check Part(1) or Part(2)? (Type 1 or 2 in the console)");
 						break;
 					}
+					else if(restart.equals("N")){
+						System.exit(0);
+					}
 				}
 				
 			}
