@@ -1,7 +1,7 @@
 package project2;
 
 public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
-
+	public boolean printStatements = false;
 	/* Function to get height of node */
 	public int height(BinaryNode<T> t) {
 		return t == null ? -1 : t.height;
@@ -12,6 +12,9 @@ public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		return lhs > rhs ? lhs : rhs;
 	}
 
+	public void printStatements(boolean print){
+		printStatements = print;
+	}
 	public BinaryNode<T> insert(T x, BinaryNode<T> t) {
 		if (t == null)
 			return new BinaryNode<>(x, null, null);
@@ -53,7 +56,7 @@ public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		k2.left = k1;
 		k1.height = max(height(k1.left), height(k1.right)) + 1;
 		k2.height = max(height(k2.right), k1.height) + 1;
-		System.out.println("Single right Rotation: " + k1.getData());
+		if(printStatements)System.out.println("Single right Rotation: " + k1.getData());
 		return k2;
 	}
 
@@ -63,19 +66,19 @@ public class AvlTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 		k1.right = k2;
 		k2.height = max(height(k2.left), height(k2.right)) + 1;
 		k1.height = max(height(k1.left), k2.height) + 1;
-		System.out.println("Single left Rotation: " + k2.getData());
+		if(printStatements)System.out.println("Single left Rotation: " + k2.getData());
 		return k1;
 	}
 
 	public BinaryNode<T> doubleWithLeftChild(BinaryNode<T> k3) {
 		k3.left = rotateWithRightChild(k3.left);
-		System.out.println("Double left-right Rotation: " + k3.getData());
+		if(printStatements)System.out.println("Double left-right Rotation: " + k3.getData());
 		return rotateWithLeftChild(k3);
 	}
 
 	public BinaryNode<T> doubleWithRightChild(BinaryNode<T> k1) {
 		k1.right = rotateWithLeftChild(k1.right);
-		System.out.println("Double right-left Rotation: " + k1.getData());
+		if(printStatements)System.out.println("Double right-left Rotation: " + k1.getData());
 		return rotateWithRightChild(k1);
 	}
 

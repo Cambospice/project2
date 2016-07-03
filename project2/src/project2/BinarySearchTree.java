@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.Comparator;
 
 public class BinarySearchTree<T extends Comparable<T>> {
-
+	public boolean printStatements = false;
 	private BinaryNode<T> root;
 	private Comparator<T> cmp;
 
@@ -125,7 +125,42 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		return t;
 	}
 	
+	/**
+	 * search for the node
+	 * 
+	 * @param x
+	 *            is the node
+	 * @return true or false that is the node is contain
+	 */
+	public boolean contains(T x) {
+		return contains(x, root);
+	}
 
+	/**
+	 * search for the node
+	 * 
+	 * @param x
+	 *            is the node
+	 * @param t
+	 * @return true or false if it contain
+	 */
+	private boolean contains(T x, BinaryNode<T> t) {
+		if (t == null)
+			return false;
+
+		int compareResult = myCompare(x, t.element);
+
+		if (compareResult < 0)
+			return contains(x, t.left);
+		else if (compareResult > 0)
+			return contains(x, t.right);
+		else
+			return true; // match
+	}
+
+	public void printStatements(boolean print){
+		printStatements = print;
+	}
 
 }
 

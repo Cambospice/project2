@@ -311,6 +311,23 @@ public class TreePrinter {
 			System.out.print("-");
 	}
 
+	public void printAVLOne(Random rand) {
+		tree = new AvlTree<>();
+		for (int i = 0; i < 35; i++) {
+			int n = rand.nextInt(90) + 10;
+			tree.insert(n);
+			TreePrinter print = new TreePrinter(tree);
+			print.print("AVL Tree");
+		}
+
+		while (tree.getRoot() != null) {
+			tree.remove(tree.getRoot().getData());
+			TreePrinter print = new TreePrinter(tree);
+			print.print("REMOVE AVL Tree");
+
+		}
+		
+	}
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		Random rand = new Random();
@@ -325,6 +342,7 @@ public class TreePrinter {
 					String s = in.nextLine();
 					if(s.toUpperCase().equals("A")){ //AVL Tree
 						tree = new AvlTree<>();
+						tree.printStatements(true);
 						for (int i = 0; i < 35; i++) {
 							int n = rand.nextInt(90) + 10;
 							tree.insert(n);
@@ -360,6 +378,7 @@ public class TreePrinter {
 					
 					else System.out.println("Incorrect input. Try again.");
 					System.out.println("Restart? (Y/N) ");
+					tree.makeEmpty();
 					String restart = in.nextLine();
 					if (restart.equals("Y")){
 						System.out.println("Would you like to check Part(1) or Part(2)? (Type 1 or 2 in the console)");
@@ -376,31 +395,77 @@ public class TreePrinter {
 				BinarySearchTree<Integer> tree2 = new BinarySearchTree<>();
 				boolean endLoop = false;
 				while(!endLoop){
-				System.out.println("Provide the value of n nodes (Give value above 1000, to end give 0): ");
-				long n = 0;
-				n = in.nextLong();
-				if(n == 0){
-					endLoop = true;
-					break;
+					System.out.println("Provide the value of n nodes (Give value above 1000, to move to next part give 0): ");
+					int n = 0;
+					n = in.nextInt();
+					if(n == 0){
+						endLoop = true;
+						break;
+					}
+					long timeStart = System.currentTimeMillis();
+					for (int i = 0; i < n; i++) {
+						int value = rand.nextInt(n) + 10;
+						tree2.insert(value);
+					}
+					long timeEnd = System.currentTimeMillis();
+					System.out.println("Time taken to make BST tree of " + n + " nodes: "+
+							(double)(timeEnd-timeStart)/1000 + " seconds");
+					timeStart = System.currentTimeMillis();
+					for (int i = 0; i < n; i++) {
+						int value = rand.nextInt(n) + 10;
+						tree.insert(value);
+					}
+					timeEnd = System.currentTimeMillis();
+					System.out.println("Time taken to make AVL tree of " + n + " nodes: "+
+							(double)(timeEnd-timeStart)/1000 + " seconds");
+
 				}
+				System.out.println("Part 2-2");
+				int newValue = rand.nextInt(1000000) + 1000000;
 				long timeStart = System.currentTimeMillis();
-				for (int i = 0; i < n; i++) {
-					int value = rand.nextInt(90) + 10;
-					tree2.insert(value);
+				System.out.println("Generated "+ newValue + " integers to be found.");
+				for(int i = 0; i < newValue; i++){
+					int value = rand.nextInt(newValue) + 10;
+					tree.contains(value);
 				}
 				long timeEnd = System.currentTimeMillis();
-				System.out.println("Time taken to make BST tree of " + n + " nodes: "+
-						(double)(timeEnd-timeStart)/1000 + " seconds");
+				System.out.println("AVL Tree: "  + (double)(timeEnd-timeStart)/1000 + " seconds.");
 				timeStart = System.currentTimeMillis();
-				for (int i = 0; i < n; i++) {
-					int value = rand.nextInt(90) + 10;
-					tree.insert(value);
+				for(int i = 0; i < newValue; i++){
+					int value = rand.nextInt(newValue) + 10;
+					tree2.contains(value);
 				}
 				timeEnd = System.currentTimeMillis();
-				System.out.println("Time taken to make AVL tree of " + n + " nodes: "+
-						(double)(timeEnd-timeStart)/1000 + " seconds");
-				
+				System.out.println("BST Tree: "  + (double)(timeEnd-timeStart)/1000 + " seconds.");
+				System.out.println("Part 2-3");
+				tree.makeEmpty();
+				tree2.makeEmpty();
+				System.out.print("Write number of insertions: ");
+				int insertions = in.nextInt();
+				System.out.print("\nWrite number of searches: ");
+				int searches = in.nextInt();
+				timeStart = System.currentTimeMillis();
+				for(int i=0;i < insertions;i++){
+					int value = rand.nextInt(insertions) + 10;
+					tree.insert(value);
 				}
+				for(int i=0; i < searches;i++){
+					int value = rand.nextInt(insertions) + 10;
+					tree.contains(value);
+				}
+				timeEnd = System.currentTimeMillis();
+				System.out.println("AVLTree: " + (double)(timeEnd-timeStart)/1000 + " seconds.");
+				timeStart = System.currentTimeMillis();
+				for(int i=0;i < insertions;i++){
+					int value = rand.nextInt(insertions) + 10;
+					tree2.insert(value);
+				}
+				for(int i=0; i < searches;i++){
+					int value = rand.nextInt(insertions) + 10;
+					tree2.contains(value);
+				}
+				timeEnd = System.currentTimeMillis();
+				System.out.println("BSTTree: " + (double)(timeEnd-timeStart)/1000 + " seconds.");
 				System.out.println("Would you like to check Part(1) or Part(2)? (Type 1 or 2 in the console)");
 			}
 		}
