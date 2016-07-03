@@ -1,5 +1,9 @@
 README (Hong Joon Chew & Samnang)
 To work with the file, use the TreePrinter main method. 
 1) Pick Part 1 or Part 2 of the homework.
-2) Follow instructions.
-*To be finished with README file
+2) Part 1 asks for AVL or BST tree, prints according to the homework.
+3) Restart would bring you back to Part 1/Part 2 menu. N would exit program.
+4) Part 2 asks for number of nodes and returns time for both trees to take.
+5) Press 0 to move to Part 2-2.
+6) PART 2-2 REQUIRES PART 2 TO HAVE CERTAIN AMOUNT OF NODES BEFORE IT CAN PROVIDE GOOD RESULTS.
+7) Moves immediately into Part 2-3 which asks for insertions and searches and returns the time taken for both trees.
