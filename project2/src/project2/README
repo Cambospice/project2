@@ -7,3 +7,14 @@ To work with the file, use the TreePrinter main method.
 5) Press 0 to move to Part 2-2.
 6) PART 2-2 REQUIRES PART 2 TO HAVE CERTAIN AMOUNT OF NODES BEFORE IT CAN PROVIDE GOOD RESULTS.
 7) Moves immediately into Part 2-3 which asks for insertions and searches and returns the time taken for both trees.
+
+
+Conclusions from the Project
+Part 2
+Between the AVL and BST Tree, by increasing the values of n, T(n) of BST Trees on average increase far more
+exponentially as compared to AVL Trees that are more consistent with its T(n).
+
+Generally, the AVL Tree finishes the searches of all the nodes far quicker than BST Tree.
+
+Empirically, the ratio when a mixture of insertion and searches gives the AVL Tree a better performance compared to B
+BST Trees is when its 1 insertion : 10 searches.  
