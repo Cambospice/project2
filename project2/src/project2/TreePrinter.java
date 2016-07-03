@@ -382,6 +382,7 @@ public class TreePrinter {
 					String restart = in.nextLine();
 					if (restart.equals("Y")){
 						System.out.println("Would you like to check Part(1) or Part(2)? (Type 1 or 2 in the console)");
+						tree.printStatements(false);
 						break;
 					}
 					else if(restart.equals("N")){
